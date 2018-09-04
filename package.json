@@ -9,8 +9,6 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^8.0.19",
-    "@types/request": "2.0.0",
-    "@types/request-promise-native": "^1.0.6",
     "tslint": "^5.11.0",
     "tslint-eslint-rules": "^4.1.1",
     "tslint-language-service": "^0.9.9",
