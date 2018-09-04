@@ -21,7 +21,7 @@
     "@types/ws": "^4.0.0",
     "ircv3": "^0.8.5",
     "randomstring": "^1.1.5",
-    "twitch": "^0.21.1",
+    "twitch": "^1.0.0-pre.1",
     "universal-websocket-client": "^1.0.2",
     "ws": "^4.0.0"
   },

@@ -631,13 +631,12 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
-twitch@^0.21.1:
-  version "0.21.1"
-  resolved "https://registry.yarnpkg.com/twitch/-/twitch-0.21.1.tgz#f600e5cb71c9f0bc25fcb5e7d11b83684ef3764a"
+twitch@^1.0.0-pre.1:
+  version "1.0.0-pre.1"
+  resolved "https://registry.yarnpkg.com/twitch/-/twitch-1.0.0-pre.1.tgz#865bd991ad8fd0de4189c8eef7239964d6037c2a"
   dependencies:
     "@types/randomstring" "^1.1.6"
     "@types/ws" "^4.0.0"
-    ircv3 "^0.8.5"
     randomstring "^1.1.5"
     request "^2.81.0"
     request-promise-native "^1.0.4"
