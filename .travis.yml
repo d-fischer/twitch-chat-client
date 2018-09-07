@@ -10,3 +10,11 @@ cache: yarn
 script:
     - npm run lint
     - npm run build
+
+jobs:
+    include:
+        - stage: Publish docs
+          if: type = push AND branch = master
+          script: travis/publishDocs.sh
+
+
