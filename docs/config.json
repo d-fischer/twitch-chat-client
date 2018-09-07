@@ -1,0 +1,9 @@
+{
+	"inputDirs": ["src"],
+	"outputDir": "generatedDocs",
+	"mode": "html",
+	"routerMode": "htmlSuffix",
+	"baseUrl": "/twitch-chat-client",
+
+	"indexTitle": "Twitch.js Chat Client"
+}
