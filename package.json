@@ -1,5 +1,5 @@
 {
-  "name": "twitch-chat",
+  "name": "twitch-chat-client",
   "version": "0.1.0",
   "description": "Interact with the Twitch Messaging Interface (aka Twitch chat).",
   "main": "lib",
@@ -11,7 +11,7 @@
     "@types/node": "^8.0.19",
     "tslint": "^5.11.0",
     "tslint-eslint-rules": "^4.1.1",
-    "tslint-language-service": "^0.9.9",
+    "twitch": "^1.0.0-pre.2",
     "typescript": "^3.0.1"
   },
   "dependencies": {
@@ -19,9 +19,11 @@
     "@types/ws": "^4.0.0",
     "ircv3": "^0.8.5",
     "randomstring": "^1.1.5",
-    "twitch": "^1.0.0-pre.1",
     "universal-websocket-client": "^1.0.2",
     "ws": "^4.0.0"
+  },
+  "peerDependencies": {
+    "twitch": "^1.0.0-pre.2"
   },
   "scripts": {
     "lint": "tslint --project .",
