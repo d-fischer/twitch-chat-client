@@ -16,5 +16,3 @@ jobs:
         - stage: Publish docs
           if: type = push AND branch = master
           script: travis/publishDocs.sh
-
-
