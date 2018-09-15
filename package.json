@@ -12,6 +12,7 @@
     "@types/ws": "^4.0.0",
     "ircv3": "^0.8.5",
     "randomstring": "^1.1.5",
+    "tslib": "^1.9.3",
     "universal-websocket-client": "^1.0.2",
     "ws": "^4.0.0"
   },

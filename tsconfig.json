@@ -15,7 +15,8 @@
 		"strictPropertyInitialization": false,
 		"suppressImplicitAnyIndexErrors": true,
 		"noUnusedLocals": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"importHelpers": true
 	},
 	"exclude": [
 		"node_modules",
