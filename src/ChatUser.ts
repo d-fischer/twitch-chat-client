@@ -1,7 +1,6 @@
 import { MessagePrefix } from 'ircv3';
 import ChatClient from './ChatClient';
 import { NonEnumerable } from './Toolkit/Decorators';
-import { User } from 'twitch';
 
 /**
  * A user in chat.
@@ -80,7 +79,7 @@ export default class ChatUser {
 	/**
 	 * Retrieves more data about the user.
 	 */
-	async getUser(): Promise<User> {
+	async getUser() {
 		if (this.userId) {
 			return this._client._twitchClient.users.getUser(this.userId);
 		}
