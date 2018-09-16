@@ -7580,7 +7580,7 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
-twitch@^1.0.0-pre.2:
+twitch@^1.0.0-pre.8:
   version "1.0.0-pre.8"
   resolved "https://registry.yarnpkg.com/twitch/-/twitch-1.0.0-pre.8.tgz#24c2a6d8bd7e4d61d98ba75c4c7aa0be64847a63"
   dependencies:
