@@ -358,7 +358,7 @@ export default class ChatClient extends IRCClient {
 				// 3 = how many viewers (not always present)
 				const match = message.match(ChatClient.HOST_MESSAGE_REGEX);
 				if (match) {
-					this.emit(this.onHosted, channel, match[1], Boolean(match[2]), match[3] === '' ? Number(match[3]) : undefined);
+					this.emit(this.onHosted, channel, match[1], Boolean(match[2]), match[3] !== '' ? Number(match[3]) : undefined);
 				}
 			}
 		});
