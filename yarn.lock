@@ -235,10 +235,6 @@
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@types/query-string/-/query-string-5.1.0.tgz#7f40cdea49ddafa0ea4f3db35fb6c24d3bfd4dcc"
 
-"@types/randomstring@^1.1.6":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@types/randomstring/-/randomstring-1.1.6.tgz#45cdc060a6f043d610bcd46503a6887db2a209c3"
-
 "@types/range-parser@*":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.2.tgz#fa8e1ad1d474688a757140c91de6dace6f4abc8d"
@@ -650,10 +646,6 @@ array-union@^1.0.1:
   resolved "https://registry.yarnpkg.com/array-union/-/array-union-1.0.2.tgz#9a34410e4f4e3da23dea375be5be70f24778ec39"
   dependencies:
     array-uniq "^1.0.1"
-
-array-uniq@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/array-uniq/-/array-uniq-1.0.2.tgz#5fcc373920775723cfd64d65c64bef53bf9eba6d"
 
 array-uniq@^1.0.1:
   version "1.0.3"
@@ -4004,12 +3996,11 @@ ipaddr.js@^1.5.2:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.8.1.tgz#fa4b79fa47fd3def5e3b159825161c0a519c9427"
 
-ircv3@^0.8.5:
-  version "0.8.9"
-  resolved "https://registry.yarnpkg.com/ircv3/-/ircv3-0.8.9.tgz#cd3809e98c9b406eb74516ff252adb701646c98c"
+ircv3@^0.8.10:
+  version "0.8.10"
+  resolved "https://registry.yarnpkg.com/ircv3/-/ircv3-0.8.10.tgz#90201f43c133dbee759c16ca73ba3b15fb4a377a"
   dependencies:
     escape-string-regexp "^1.0.5"
-    randomstring "^1.1.5"
     universal-websocket-client "^1.0.1"
     ws "^3.1.0"
 
@@ -4688,9 +4679,13 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-"lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.13.1, lodash@^4.17.10, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@~4.17.10:
+"lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@~4.17.10:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
+
+lodash@^4.13.1:
+  version "4.17.11"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
 log-symbols@^1.0.2:
   version "1.0.2"
@@ -6226,12 +6221,6 @@ randomfill@^1.0.3:
     randombytes "^2.0.5"
     safe-buffer "^5.1.0"
 
-randomstring@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/randomstring/-/randomstring-1.1.5.tgz#6df0628f75cbd5932930d9fe3ab4e956a18518c3"
-  dependencies:
-    array-uniq "1.0.2"
-
 range-parser@^1.0.3, range-parser@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
@@ -7592,13 +7581,12 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
 twitch@^1.0.0-pre.2:
-  version "1.0.0-pre.2"
-  resolved "https://registry.yarnpkg.com/twitch/-/twitch-1.0.0-pre.2.tgz#fb59b15ba7f517fd647c4c17f14233888f26a016"
+  version "1.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/twitch/-/twitch-1.0.0-pre.8.tgz#24c2a6d8bd7e4d61d98ba75c4c7aa0be64847a63"
   dependencies:
-    "@types/randomstring" "^1.1.6"
-    randomstring "^1.1.5"
     request "^2.81.0"
     request-promise-native "^1.0.4"
+    tslib "^1.9.3"
 
 type-is@~1.6.15, type-is@~1.6.16:
   version "1.6.16"
