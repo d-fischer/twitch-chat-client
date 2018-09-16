@@ -3996,9 +3996,9 @@ ipaddr.js@^1.5.2:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.8.1.tgz#fa4b79fa47fd3def5e3b159825161c0a519c9427"
 
-ircv3@^0.8.10:
-  version "0.8.10"
-  resolved "https://registry.yarnpkg.com/ircv3/-/ircv3-0.8.10.tgz#90201f43c133dbee759c16ca73ba3b15fb4a377a"
+ircv3@^0.8.11:
+  version "0.8.11"
+  resolved "https://registry.yarnpkg.com/ircv3/-/ircv3-0.8.11.tgz#41b3d548aac2c7ef4e132690b732bcc282fa4547"
   dependencies:
     escape-string-regexp "^1.0.5"
     universal-websocket-client "^1.0.1"

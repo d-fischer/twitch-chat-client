@@ -5,5 +5,23 @@
 	"routerMode": "htmlSuffix",
 	"baseUrl": "/twitch-chat-client",
 
-	"indexTitle": "Twitch.js Chat Client"
+	"indexTitle": "Twitch.js Chat Client",
+	"categories": [
+		{
+			"name": "basic-usage",
+			"title": "Basic usage",
+			"articles": [
+				{
+					"name": "getting-started",
+					"title": "Getting started",
+					"file": "basic-usage/getting-started.md"
+				},
+				{
+					"name": "connecting-to-chat",
+					"title": "Connecting to Chat",
+					"file": "basic-usage/connecting-to-chat.md"
+				}
+			]
+		}
+	]
 }
