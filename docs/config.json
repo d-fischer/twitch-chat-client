@@ -6,6 +6,7 @@
 	"baseUrl": "/twitch-chat-client",
 
 	"indexTitle": "Twitch.js Chat Client",
+	"indexFile": "index.md",
 	"categories": [
 		{
 			"name": "basic-usage",
