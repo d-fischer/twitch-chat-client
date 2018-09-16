@@ -8,9 +8,9 @@ const followAgeListener = chatClient.onPrivmsg((channel: string, user: string, m
 		if (follow) {
 			const currentTimestamp = Date.now();
 			const followStartTimestamp = follow.followDate.getTime();
-			chatClient.sendPrivmsg(channel, `@${user} You have been following for ${secondsToDuration((currentTimestamp - followStartTimestamp) / 1000)}!`);
+			chatClient.say(channel, `@${user} You have been following for ${secondsToDuration((currentTimestamp - followStartTimestamp) / 1000)}!`);
 		} else {
-			chatClient.sendPrivmsg(channel, `@${user} You are not following!`);
+			chatClient.say(channel, `@${user} You are not following!`);
 		}
 	}
 });
