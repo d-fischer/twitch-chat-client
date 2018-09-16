@@ -21,6 +21,11 @@
 					"name": "connecting-to-chat",
 					"title": "Connecting to Chat",
 					"file": "basic-usage/connecting-to-chat.md"
+				},
+				{
+					"name": "listening-to-events",
+					"title": "Listening to events",
+					"file": "basic-usage/listening-to-events.md"
 				}
 			]
 		}
