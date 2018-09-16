@@ -790,6 +790,32 @@ export default class ChatClient extends IRCClient {
 		this.sendMessage(TwitchPrivateMessage, { target: UserTools.toChannelName(channel), message: '/unhost' });
 	}
 
+	async join(channel: string) {
+		channel = UserTools.toChannelName(channel);
+		return new Promise<void>((resolve, reject) => {
+			let timer: NodeJS.Timer;
+			const e = this._onJoinResult((chan, state, error) => {
+				if (chan === channel) {
+					clearTimeout(timer);
+					if (error) {
+						reject(error);
+					} else {
+						resolve();
+					}
+					this.removeListener(e);
+				}
+			});
+			timer = setTimeout(
+				() => {
+					this.removeListener(e);
+					reject(new Error(`Did not receive a reply to join ${channel} in time; assuming that the join failed`));
+				},
+				10000
+			);
+			super.join(channel);
+		});
+	}
+
 	protected registerCoreMessageTypes() {
 		super.registerCoreMessageTypes();
 		this.registerMessageType(TwitchPrivateMessage);

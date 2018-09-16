@@ -8,6 +8,13 @@ class TwitchPrivateMessage extends PrivateMessage {
 		return new ChatUser(this._prefix!, this._tags, this._client as ChatClient);
 	}
 
+	get channelId(): string | null {
+		if (!this._tags) {
+			return null;
+		}
+		return this._tags.get('room-id') || null;
+	}
+
 	get isCheer(): boolean {
 		if (!this._tags) {
 			return false;
