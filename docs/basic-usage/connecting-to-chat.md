@@ -3,7 +3,7 @@ First, you have to create an instance of the core Twitch client, as outlined in 
 Then, using that instance, you create a new {@ChatClient} instance and connect it to the Twitch Chat server:
 
 ```typescript
-import ChatClient from 'twitch-pubsub-client';
+import ChatClient from 'twitch-chat-client';
 
 const chatClient = await ChatClient.forTwitchClient(twitchClient);
 await chatClient.connect();
