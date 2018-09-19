@@ -17,6 +17,9 @@ import UserNotice from './Capabilities/TwitchCommands/MessageTypes/UserNotice';
 import Whisper from './Capabilities/TwitchCommands/MessageTypes/Whisper';
 import { NonEnumerable } from './Toolkit/Decorators';
 import TwitchPrivateMessage from './StandardCommands/PrivateMessage';
+import ChatRaidInfo from './ChatRaidInfo';
+import ChatRitualInfo from './ChatRitualInfo';
+import ChatCommunitySubInfo from './ChatCommunitySubInfo';
 
 /**
  * An interface to Twitch chat.
@@ -156,6 +159,28 @@ export default class ChatClient extends IRCClient {
 	onUnhost: (handler: (channel: string) => void) => Listener = this.registerEvent();
 
 	/**
+	 * Fires when a user raids a channel.
+	 *
+	 * @eventListener
+	 * @param channel The channel that was raided.
+	 * @param user The user that has raided the channel.
+	 * @param raidInfo Additional information about the raid.
+	 * @param msg The raw message that was received.
+	 */
+	onRaid: (handler: (channel: string, user: string, raidInfo: ChatRaidInfo, msg: UserNotice) => void) => Listener = this.registerEvent();
+
+	/**
+	 * Fires when a user performs a "ritual" in a channel.
+	 *
+	 * @eventListener
+	 * @param channel The channel where the ritual was performed.
+	 * @param user The user that has performed the ritual.
+	 * @param ritualInfo Additional information about the ritual.
+	 * @param msg The raw message that was received.
+	 */
+	onRitual: (handler: (channel: string, user: string, ritualInfo: ChatRaidInfo, msg: UserNotice) => void) => Listener = this.registerEvent();
+
+	/**
 	 * Fires when slow mode is toggled in a channel.
 	 *
 	 * @eventListener
@@ -208,6 +233,18 @@ export default class ChatClient extends IRCClient {
 	 * @param msg The raw message that was received.
 	 */
 	onSubGift: (handler: (channel: string, user: string, subInfo: ChatSubGiftInfo, msg: UserNotice) => void)
+		=> Listener = this.registerEvent();
+
+	/**
+	 * Fires when a user gifts random subscriptions to the community of a channel.
+	 *
+	 * @eventListener
+	 * @param channel The channel that was subscribed to.
+	 * @param user The gifting user.
+	 * @param subInfo Additional information about the community subscription.
+	 * @param msg The raw message that was received.
+	 */
+	onCommunitySub: (handler: (channel: string, user: string, subInfo: ChatCommunitySubInfo, msg: UserNotice) => void)
 		=> Listener = this.registerEvent();
 
 	/**
@@ -408,30 +445,63 @@ export default class ChatClient extends IRCClient {
 			const { params: { channel, message }, tags } = userNotice;
 			const messageType = tags.get('msg-id');
 
-			if (messageType === 'sub' || messageType === 'resub') {
-				const event = messageType === 'sub' ? this.onSub : this.onResub;
-				const plan = tags.get('msg-param-sub-plan')!;
-				const subInfo: ChatSubInfo = {
-					displayName: tags.get('display-name')!,
-					plan,
-					planName: tags.get('msg-param-sub-plan-name')!,
-					isPrime: plan === 'Prime',
-					streak: Number(tags.get('msg-param-months')),
-					message
-				};
-				this.emit(event, channel, tags.get('login')!, subInfo, userNotice);
-			} else if (messageType === 'subgift') {
-				const plan = tags.get('msg-param-sub-plan')!;
-				const subInfo: ChatSubGiftInfo = {
-					displayName: tags.get('msg-param-recipient-display-name')!,
-					gifter: tags.get('login')!,
-					gifterDisplayName: tags.get('display-name')!,
-					plan,
-					planName: tags.get('msg-param-sub-plan-name')!,
-					isPrime: plan === 'Prime',
-					streak: Number(tags.get('msg-param-months'))
-				};
-				this.emit(this.onSubGift, channel, tags.get('msg-param-recipient-user-name'), subInfo, userNotice);
+			switch (messageType) {
+				case 'sub':
+				case 'resub': {
+					const event = messageType === 'sub' ? this.onSub : this.onResub;
+					const plan = tags.get('msg-param-sub-plan')!;
+					const subInfo: ChatSubInfo = {
+						displayName: tags.get('display-name')!,
+						plan,
+						planName: tags.get('msg-param-sub-plan-name')!,
+						isPrime: plan === 'Prime',
+						streak: Number(tags.get('msg-param-months')),
+						message
+					};
+					this.emit(event, channel, tags.get('login')!, subInfo, userNotice);
+					break;
+				}
+				case 'subgift': {
+					const plan = tags.get('msg-param-sub-plan')!;
+					const subInfo: ChatSubGiftInfo = {
+						displayName: tags.get('msg-param-recipient-display-name')!,
+						gifter: tags.get('login')!,
+						gifterDisplayName: tags.get('display-name')!,
+						plan,
+						planName: tags.get('msg-param-sub-plan-name')!,
+						isPrime: plan === 'Prime',
+						streak: Number(tags.get('msg-param-months'))
+					};
+					this.emit(this.onSubGift, channel, tags.get('msg-param-recipient-user-name')!, subInfo, userNotice);
+					break;
+				}
+				case 'submysterygift': {
+					const communitySubInfo: ChatCommunitySubInfo = {
+						gifterDisplayName: tags.get('display-name')!,
+						plan: tags.get('msg-param-sub-plan')!
+					};
+					this.emit(this.onCommunitySub, channel, tags.get('login'), communitySubInfo, userNotice);
+					break;
+				}
+				case 'raid': {
+					const raidInfo: ChatRaidInfo = {
+						displayName: tags.get('msg-param-displayName')!,
+						viewerCount: Number(tags.get('msg-param-viewerCount'))
+					};
+					this.emit(this.onRaid, channel, tags.get('login')!, raidInfo, userNotice);
+					break;
+				}
+				case 'ritual': {
+					const ritualInfo: ChatRitualInfo = {
+						ritualName: tags.get('msg-param-ritual-name')!,
+						message
+					};
+					this.emit(this.onRitual, channel, tags.get('login')!, ritualInfo, userNotice);
+					break;
+				}
+				default: {
+					console.warn(`Unrecognized usernotice ID: ${messageType}`);
+				}
 			}
 		});
 

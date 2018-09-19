@@ -10,7 +10,7 @@ export default interface ChatSubInfo {
 	/**
 	 * The plan ID of the subscription.
 	 *
-	 * Tier 1, 2, 3 are '1000', '2000', '3000' and a Twitch Prime subscription is called 'Prime'.
+	 * Tier 1, 2, 3 are '1000', '2000', '3000' respectively, and a Twitch Prime subscription is called 'Prime'.
 	 */
 	plan: string;
 
