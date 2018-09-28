@@ -7,6 +7,7 @@ import ChatClient from 'twitch-chat-client';
 
 const chatClient = await ChatClient.forTwitchClient(twitchClient);
 await chatClient.connect();
+await chatClient.waitForRegistration();
 ```
 
 After that, you can join channels. You don't have to care about them being lower case or having a `#` in front of them, as the library does that for you:

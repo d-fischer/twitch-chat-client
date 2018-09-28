@@ -74,6 +74,22 @@
     webpack-manifest-plugin "^2.0.0-rc.2"
     webpack-node-externals "^1.6.0"
 
+"@d-fischer/logger@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@d-fischer/logger/-/logger-0.1.0.tgz#685001fc3af1f1afc8ad152188e3ae80fe107dff"
+  dependencies:
+    chalk "^2.4.1"
+    detect-node "^2.0.4"
+    tslib "^1.9.3"
+
+"@d-fischer/logger@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@d-fischer/logger/-/logger-0.1.1.tgz#efd0e91be7628e45093336a88c826aecfd7e9794"
+  dependencies:
+    chalk "^2.4.1"
+    detect-node "^2.0.4"
+    tslib "^1.9.3"
+
 "@fortawesome/fontawesome-common-types@^0.2.4":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.4.tgz#7c560ff732c6c7c7c179ae25227ce5449e6f6d65"
@@ -2507,7 +2523,7 @@ detect-libc@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
 
-detect-node@^2.0.3:
+detect-node@^2.0.3, detect-node@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/detect-node/-/detect-node-2.0.4.tgz#014ee8f8f669c5c58023da64b8179c083a28c46c"
 
@@ -3989,10 +4005,11 @@ ipaddr.js@^1.5.2:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.8.1.tgz#fa4b79fa47fd3def5e3b159825161c0a519c9427"
 
-ircv3@^0.8.12:
-  version "0.8.12"
-  resolved "https://registry.yarnpkg.com/ircv3/-/ircv3-0.8.12.tgz#19ab89ab6319efd8abeed07dace32820ab0c7075"
+ircv3@^0.8.13:
+  version "0.8.13"
+  resolved "https://registry.yarnpkg.com/ircv3/-/ircv3-0.8.13.tgz#4940070161959e14806cf02868d80b7cbe5514f3"
   dependencies:
+    "@d-fischer/logger" "^0.1.1"
     escape-string-regexp "^1.0.5"
     universal-websocket-client "^1.0.1"
     ws "^3.1.0"
@@ -7621,6 +7638,10 @@ typedoc@^0.12.0:
 typescript@3.0.x, typescript@^3.0.1:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.3.tgz#4853b3e275ecdaa27f78fda46dc273a7eb7fc1c8"
+
+typescript@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.1.tgz#3362ba9dd1e482ebb2355b02dfe8bcd19a2c7c96"
 
 uglify-es@^3.3.4, uglify-es@^3.3.9:
   version "3.3.9"

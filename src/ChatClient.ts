@@ -1,6 +1,7 @@
 import { Client as IRCClient } from 'ircv3';
 import { Listener } from 'ircv3/lib/TypedEventEmitter';
 import TwitchClient from 'twitch';
+import { LogLevel } from '@d-fischer/logger';
 
 import ChatSubInfo, { ChatSubGiftInfo } from './ChatSubInfo';
 import UserTools from './Toolkit/UserTools';
@@ -20,6 +21,13 @@ import TwitchPrivateMessage from './StandardCommands/PrivateMessage';
 import ChatRaidInfo from './ChatRaidInfo';
 import ChatRitualInfo from './ChatRitualInfo';
 import ChatCommunitySubInfo from './ChatCommunitySubInfo';
+
+/**
+ * Options for a chat client.
+ */
+export interface ChatClientOptions {
+	logLevel?: LogLevel;
+}
 
 /**
  * An interface to Twitch chat.
@@ -308,12 +316,13 @@ export default class ChatClient extends IRCClient {
 	 * Creates a new Twitch chat client with the user info from the TwitchClient instance.
 	 *
 	 * @param twitchClient The TwitchClient instance to use for user info and API requests.
+	 * @param options Options for the chat client.
 	 */
-	static async forTwitchClient(twitchClient: TwitchClient) {
+	static async forTwitchClient(twitchClient: TwitchClient, options: ChatClientOptions = {}) {
 		const accessToken = await twitchClient.getAccessToken('chat_login');
 		const token = await twitchClient.getTokenInfo();
 		if (token.valid) {
-			return new this(token.userName!, accessToken, twitchClient);
+			return new this(token.userName!, accessToken, twitchClient, options);
 		}
 
 		throw new Error('trying to get chat client for invalid token');
@@ -327,8 +336,9 @@ export default class ChatClient extends IRCClient {
 	 *
 	 * Do not prefix `oauth:`.
 	 * @param twitchClient The {@TwitchClient} instance to use for API requests.
+	 * @param options Options for the chat client.
 	 */
-	constructor(username: string, token: string, twitchClient: TwitchClient) {
+	constructor(username: string, token: string, twitchClient: TwitchClient, options: ChatClientOptions = {}) {
 		super({
 			connection: {
 				hostName: 'irc-ws.chat.twitch.tv',
@@ -337,7 +347,7 @@ export default class ChatClient extends IRCClient {
 				secure: true
 			},
 			webSocket: true,
-			debugLevel: twitchClient._config.debugLevel
+			logLevel: options.logLevel
 		});
 
 		this._twitchClient = twitchClient;
