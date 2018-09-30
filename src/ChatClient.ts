@@ -275,7 +275,7 @@ export default class ChatClient extends IRCClient {
 	 * @param message The message text.
 	 * @param msg The raw message  that was received.
 	 */
-	onPrivmsg: (handler: (channel: string, user: string, message: string, msg: TwitchPrivateMessage) => void) => Listener;
+	onPrivmsg!: (handler: (channel: string, user: string, message: string, msg: TwitchPrivateMessage) => void) => Listener;
 
 	// internal events to resolve promises and stuff
 	private readonly _onBanResult: (handler: (channel: string, user: string, error?: string) => void)

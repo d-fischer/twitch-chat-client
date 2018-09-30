@@ -11,9 +11,6 @@
 		"forceConsistentCasingInFileNames": true,
 		"noImplicitReturns": true,
 		"strict": true,
-		"strictFunctionTypes": false,
-		"strictPropertyInitialization": false,
-		"suppressImplicitAnyIndexErrors": true,
 		"noUnusedLocals": true,
 		"experimentalDecorators": true,
 		"importHelpers": true
