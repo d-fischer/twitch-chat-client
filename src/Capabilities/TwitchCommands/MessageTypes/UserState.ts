@@ -8,7 +8,7 @@ export interface UserStateParams {
 /** @private */
 export default class UserState extends Message<UserStateParams> {
 	static readonly COMMAND = 'USERSTATE';
-	static readonly PARAM_SPEC: MessageParamSpec<UserStateParams> = {
+	static readonly PARAM_SPEC: MessageParamSpec<UserState> = {
 		channel: {
 			type: 'channel'
 		}

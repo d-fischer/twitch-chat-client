@@ -10,7 +10,7 @@ export interface HostTargetParams {
 /** @private */
 export default class HostTarget extends Message<HostTargetParams> {
 	static readonly COMMAND = 'HOSTTARGET';
-	static readonly PARAM_SPEC: MessageParamSpec<HostTargetParams> = {
+	static readonly PARAM_SPEC: MessageParamSpec<HostTarget> = {
 		channel: {
 			type: 'channel'
 		},

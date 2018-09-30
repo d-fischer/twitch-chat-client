@@ -9,7 +9,7 @@ export interface ClearChatParams {
 /** @private */
 export default class ClearChat extends Message<ClearChatParams> {
 	static readonly COMMAND = 'CLEARCHAT';
-	static readonly PARAM_SPEC: MessageParamSpec<ClearChatParams> = {
+	static readonly PARAM_SPEC: MessageParamSpec<ClearChat> = {
 		channel: {
 			type: 'channel'
 		},

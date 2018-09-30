@@ -4005,9 +4005,9 @@ ipaddr.js@^1.5.2:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.8.1.tgz#fa4b79fa47fd3def5e3b159825161c0a519c9427"
 
-ircv3@^0.8.14:
-  version "0.8.14"
-  resolved "https://registry.yarnpkg.com/ircv3/-/ircv3-0.8.14.tgz#0c110faf0920cc3bba7a462d0cefc6dfd764305f"
+ircv3@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/ircv3/-/ircv3-0.10.0.tgz#e50ae1434aa9f3ac4ea1bd84e12bdc33bcfaae5e"
   dependencies:
     "@d-fischer/logger" "^0.1.1"
     escape-string-regexp "^1.0.5"

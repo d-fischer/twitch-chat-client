@@ -358,7 +358,7 @@ export default class ChatClient extends IRCClient {
 		this.registerCapability(TwitchMembershipCapability);
 		// tslint:enable:no-floating-promises
 
-		this.onMessage(ClearChat, ({ params: { channel, user }, tags }: ClearChat) => {
+		this.onMessage(ClearChat, ({ params: { channel, user }, tags }) => {
 			if (user) {
 				const duration = tags.get('ban-duration');
 				const reason = tags.get('ban-reason');
@@ -376,8 +376,7 @@ export default class ChatClient extends IRCClient {
 			}
 		});
 
-		this.onMessage(HostTarget, (hostMessage: HostTarget) => {
-			const { params: { channel, targetAndViewers } } = hostMessage;
+		this.onMessage(HostTarget, ({ params: { channel, targetAndViewers } }) => {
 			const [target, viewers] = targetAndViewers.split(' ');
 			if (target === '-') {
 				// unhost
@@ -387,18 +386,15 @@ export default class ChatClient extends IRCClient {
 			}
 		});
 
-		this.onMessage(ChannelJoin, (joinMessage: ChannelJoin) => {
-			const { prefix, params: { channel } } = joinMessage;
+		this.onMessage(ChannelJoin, ({ prefix, params: { channel } }) => {
 			this.emit(this.onJoin, channel, prefix!.nick);
 		});
 
-		this.onMessage(ChannelPart, (partMessage: ChannelPart) => {
-			const { prefix, params: { channel } } = partMessage;
+		this.onMessage(ChannelPart, ({ prefix, params: { channel } }: ChannelPart) => {
 			this.emit(this.onPart, channel, prefix!.nick);
 		});
 
-		this.onMessage(TwitchPrivateMessage, (msg: TwitchPrivateMessage) => {
-			const { prefix, params: { target: channel, message } } = msg;
+		this.onMessage(TwitchPrivateMessage, ({ prefix, params: { target: channel, message } }) => {
 			if (prefix && prefix.nick === 'jtv') {
 				// 1 = who hosted
 				// 2 = auto-host or not
@@ -410,9 +406,7 @@ export default class ChatClient extends IRCClient {
 			}
 		});
 
-		this.onMessage(RoomState, (stateMessage: RoomState) => {
-			const { params: { channel }, tags } = stateMessage;
-
+		this.onMessage(RoomState, ({ params: { channel }, tags }) => {
 			let isInitial = false;
 			if (tags.has('subs-only') && tags.has('slow')) {
 				// this is the full state - so we just successfully joined
@@ -451,7 +445,7 @@ export default class ChatClient extends IRCClient {
 			}
 		});
 
-		this.onMessage(UserNotice, (userNotice: UserNotice) => {
+		this.onMessage(UserNotice, userNotice => {
 			const { params: { channel, message }, tags } = userNotice;
 			const messageType = tags.get('msg-id');
 
@@ -515,12 +509,11 @@ export default class ChatClient extends IRCClient {
 			}
 		});
 
-		this.onMessage(Whisper, (whisper: Whisper) => {
+		this.onMessage(Whisper, whisper => {
 			this.emit(this.onWhisper, whisper.prefix!.nick, whisper.params.message, whisper);
 		});
 
-		this.onMessage(Notice, (notice: Notice) => {
-			const { params: { target: channel, message }, tags } = notice;
+		this.onMessage(Notice, ({ params: { target: channel, message }, tags }) => {
 			const messageType = tags.get('msg-id');
 
 			// this event handler involves a lot of parsing strings you shouldn't parse...
@@ -824,10 +817,7 @@ export default class ChatClient extends IRCClient {
 					this.removeListener(e);
 				}
 			});
-			this.sendMessage(TwitchPrivateMessage, {
-				target: UserTools.toChannelName(channel),
-				message: `/host ${target}`
-			});
+			this.say(UserTools.toChannelName(channel), `/host ${target}`);
 		});
 	}
 
@@ -853,7 +843,7 @@ export default class ChatClient extends IRCClient {
 					this.removeListener(e);
 				}
 			});
-			this.sendMessage(TwitchPrivateMessage, { target: UserTools.toChannelName(channel), message: '/unhost' });
+			this.say(UserTools.toChannelName(channel), '/unhost');
 		});
 	}
 
@@ -867,7 +857,7 @@ export default class ChatClient extends IRCClient {
 	 * @param channel The channel to end the host on. Defaults to the channel of the connected user.
 	 */
 	unhostOutside(channel: string = this._nick) {
-		this.sendMessage(TwitchPrivateMessage, { target: UserTools.toChannelName(channel), message: '/unhost' });
+		this.say(UserTools.toChannelName(channel), '/unhost');
 	}
 
 	async join(channel: string) {
