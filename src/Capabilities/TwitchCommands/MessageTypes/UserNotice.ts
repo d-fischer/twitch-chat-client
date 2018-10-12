@@ -22,11 +22,11 @@ export default class UserNotice extends Message<UserNoticeParams> {
 		}
 	};
 
-	get userInfo(): ChatUser {
+	get userInfo() {
 		return new ChatUser(this._prefix!, this._tags, this._client as ChatClient);
 	}
 
-	get emoteOffsets(): Map<string, string[]> {
+	get emoteOffsets() {
 		if (!this._tags) {
 			return new Map;
 		}

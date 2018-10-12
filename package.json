@@ -18,11 +18,11 @@
     "rimraf": "^2.6.2",
     "tslint": "^5.11.0",
     "tslint-eslint-rules": "^4.1.1",
-    "twitch": "^1.0.0",
+    "twitch": "^1.0.2",
     "typescript": "~3.0.3"
   },
   "peerDependencies": {
-    "twitch": "^1.0.0"
+    "twitch": "^1.0.2"
   },
   "scripts": {
     "lint": "tslint --project .",
