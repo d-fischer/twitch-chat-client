@@ -10,8 +10,10 @@ export interface MessageCheermote {
 }
 
 class TwitchPrivateMessage extends PrivateMessage {
+	protected _client!: ChatClient;
+
 	get userInfo() {
-		return new ChatUser(this._prefix!, this._tags, this._client as ChatClient);
+		return new ChatUser(this._prefix!, this._tags, this._client);
 	}
 
 	get channelId() {
@@ -41,7 +43,7 @@ class TwitchPrivateMessage extends PrivateMessage {
 		const result: MessageCheermote[] = [];
 
 		if (this.isCheer && this.channelId) {
-			const cheermotes = await (this._client as ChatClient)._twitchClient.bits.getCheermotes(this.channelId);
+			const cheermotes = await this._client._twitchClient.bits.getCheermotes(this.channelId);
 			const names = cheermotes.getPossibleNames();
 			const re = /(?<=^|\s)([a-z]+)(\d+)(?=\s|$)/gi;
 			let match: RegExpExecArray | null;
