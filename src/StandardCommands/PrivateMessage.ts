@@ -13,7 +13,7 @@ class TwitchPrivateMessage extends PrivateMessage {
 	protected _client!: ChatClient;
 
 	get userInfo() {
-		return new ChatUser(this._prefix!, this._tags, this._client);
+		return new ChatUser(this._prefix!.nick, this._tags, this._client);
 	}
 
 	get channelId() {

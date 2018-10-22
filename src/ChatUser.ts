@@ -1,4 +1,3 @@
-import { MessagePrefix } from 'ircv3';
 import ChatClient from './ChatClient';
 import { NonEnumerable } from './Toolkit/Decorators';
 
@@ -12,8 +11,8 @@ export default class ChatUser {
 	@NonEnumerable private readonly _client: ChatClient;
 
 	/** @private */
-	constructor(prefix: MessagePrefix, userData: Map<string, string> | undefined, client: ChatClient) {
-		this._userName = prefix.nick.toLowerCase();
+	constructor(userName: string, userData: Map<string, string> | undefined, client: ChatClient) {
+		this._userName = userName.toLowerCase();
 		this._client = client;
 		this._userData = userData ? new Map(userData) : new Map;
 	}
@@ -70,10 +69,17 @@ export default class ChatUser {
 	}
 
 	/**
-	 * Whether the user is a subscriber.
+	 * Whether the user is subscribed to the channel.
 	 */
 	get isSubscriber() {
-		return Boolean(this._userData.get('subscriber'));
+		return this.badges.has('subscriber');
+	}
+
+	/**
+	 * Whether the user is a moderator of the channel.
+	 */
+	get isMod() {
+		return this.badges.has('moderator');
 	}
 
 	/**
