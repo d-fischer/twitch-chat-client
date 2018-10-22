@@ -21,7 +21,7 @@ export default class Whisper extends Message<WhisperParams> {
 	};
 
 	get userInfo(): ChatUser {
-		return new ChatUser(this._prefix!, this._tags, this._client as ChatClient);
+		return new ChatUser(this._prefix!.nick, this._tags, this._client as ChatClient);
 	}
 
 	get emoteOffsets(): Map<string, string[]> {

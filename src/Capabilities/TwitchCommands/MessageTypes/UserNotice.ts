@@ -23,7 +23,7 @@ export default class UserNotice extends Message<UserNoticeParams> {
 	};
 
 	get userInfo() {
-		return new ChatUser(this._prefix!, this._tags, this._client as ChatClient);
+		return new ChatUser(this._prefix!.nick, this._tags, this._client as ChatClient);
 	}
 
 	get emoteOffsets() {
