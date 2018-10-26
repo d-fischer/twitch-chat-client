@@ -8,7 +8,6 @@ export default class ChatUser {
 	private readonly _userData: Map<string, string>;
 	private readonly _userName: string;
 
-	/** @deprecated */
 	@NonEnumerable private readonly _client: ChatClient;
 
 	/** @private */
