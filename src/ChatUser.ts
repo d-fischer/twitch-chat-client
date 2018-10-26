@@ -8,6 +8,7 @@ export default class ChatUser {
 	private readonly _userData: Map<string, string>;
 	private readonly _userName: string;
 
+	/** @deprecated */
 	@NonEnumerable private readonly _client: ChatClient;
 
 	/** @private */
@@ -84,6 +85,8 @@ export default class ChatUser {
 
 	/**
 	 * Retrieves more data about the user.
+	 *
+	 * @deprecated Use the `twitch` methods directly instead.
 	 */
 	async getUser() {
 		if (this.userId) {
