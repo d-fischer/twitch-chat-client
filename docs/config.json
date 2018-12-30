@@ -5,6 +5,9 @@
 	"routerMode": "htmlSuffix",
 	"baseUrl": "/twitch-chat-client",
 
+	"repoUser": "d-fischer",
+	"repoName": "twitch-chat-client",
+
 	"indexTitle": "Twitch.js Chat Client",
 	"indexFile": "index.md",
 	"categories": [

@@ -2,9 +2,10 @@
 # yarn lockfile v1
 
 
-"@d-fischer/documen.ts@^0.2.11":
-  version "0.2.11"
-  resolved "https://registry.yarnpkg.com/@d-fischer/documen.ts/-/documen.ts-0.2.11.tgz#dbe3e217300c2976c55f9dfa2fe8d6295a67b160"
+"@d-fischer/documen.ts@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@d-fischer/documen.ts/-/documen.ts-0.3.0.tgz#5a92cc1e6255872a06a465217638f8abfa40f454"
+  integrity sha512-xqayxPvZqmPglpfNfFJ7eOXtKmiDmByzKZlWojL7I8O6bGL1ivs6x7qVbs2S5hCpqOZMZRxfgcaZ+G7WJEIplA==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.2"
     "@fortawesome/free-solid-svg-icons" "^5.2.0"
@@ -17,8 +18,8 @@
     "@types/invariant" "^2.2.29"
     "@types/node" "^9.6.1"
     "@types/query-string" "^5.1.0"
-    "@types/react" "^16.4.11"
-    "@types/react-dom" "^16.0.4"
+    "@types/react" "^16.7.18"
+    "@types/react-dom" "^16.0.11"
     "@types/react-fontawesome" "^1.6.2"
     "@types/react-hot-loader" "^3.0.6"
     "@types/react-paginate" "^4.3.2"
@@ -65,7 +66,7 @@
     tmp "^0.0.33"
     tslib "^1.9.3"
     typedoc "^0.12.0"
-    typescript "^3.0.1"
+    typescript "~3.0.3"
     untildify "^3.0.3"
     url-loader "^1.0.1"
     webpack "^4.4.1"
@@ -255,11 +256,11 @@
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.2.tgz#fa8e1ad1d474688a757140c91de6dace6f4abc8d"
 
-"@types/react-dom@^16.0.4":
-  version "16.0.7"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.7.tgz#54d0f867a76b90597e8432030d297982f25c20ba"
+"@types/react-dom@^16.0.11":
+  version "16.0.11"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.11.tgz#bd10ccb0d9260343f4b9a49d4f7a8330a5c1f081"
+  integrity sha512-x6zUx9/42B5Kl2Vl9HlopV8JF64wLpX3c+Pst9kc1HgzrsH+mkehe/zmHMQTplIrR48H2gpU7ZqurQolYu8XBA==
   dependencies:
-    "@types/node" "*"
     "@types/react" "*"
 
 "@types/react-fontawesome@^1.6.2":
@@ -301,9 +302,17 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.4.11":
+"@types/react@*":
   version "16.4.13"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.13.tgz#1385f5dc3486aa493849a32ccce626a817543e28"
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
+"@types/react@^16.7.18":
+  version "16.7.18"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.7.18.tgz#f4ce0d539a893dd61e36cd11ae3a5e54f5a48337"
+  integrity sha512-Tx4uu3ppK53/iHk6VpamMP3f3ahfDLEVt3ZQc8TFm30a1H3v9lMsCntBREswZIW/SKrvJjkb3Hq8UwO6GREBng==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -7635,7 +7644,7 @@ typedoc@^0.12.0:
     typedoc-default-themes "^0.5.0"
     typescript "3.0.x"
 
-typescript@3.0.x, typescript@^3.0.1, typescript@~3.0.3:
+typescript@3.0.x, typescript@~3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.3.tgz#4853b3e275ecdaa27f78fda46dc273a7eb7fc1c8"
 
