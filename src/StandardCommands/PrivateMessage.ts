@@ -39,6 +39,9 @@ class TwitchPrivateMessage extends PrivateMessage {
 		return Number(this._tags.get('bits'));
 	}
 
+	/**
+	 * @deprecated alternative coming soon
+	 */
 	async getSeparateBits() {
 		const result: MessageCheermote[] = [];
 
