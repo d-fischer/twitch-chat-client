@@ -459,7 +459,7 @@ export default class ChatClient extends IRCClient {
 						plan,
 						planName: tags.get('msg-param-sub-plan-name')!,
 						isPrime: plan === 'Prime',
-						streak: Number(tags.get('msg-param-months')),
+						streak: Number(tags.get('msg-param-streak-tenure-months') || tags.get('msg-param-months')),
 						message
 					};
 					this.emit(event, channel, tags.get('login')!, subInfo, userNotice);
@@ -474,7 +474,7 @@ export default class ChatClient extends IRCClient {
 						plan,
 						planName: tags.get('msg-param-sub-plan-name')!,
 						isPrime: plan === 'Prime',
-						streak: Number(tags.get('msg-param-months'))
+						streak: Number(tags.get('msg-param-streak-tenure-months') || tags.get('msg-param-months'))
 					};
 					this.emit(this.onSubGift, channel, tags.get('msg-param-recipient-user-name')!, subInfo, userNotice);
 					break;
