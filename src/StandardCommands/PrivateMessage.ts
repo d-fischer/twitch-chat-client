@@ -48,7 +48,8 @@ class TwitchPrivateMessage extends PrivateMessage {
 		if (this.isCheer && this.channelId) {
 			const cheermotes = await this._client._twitchClient.bits.getCheermotes(this.channelId);
 			const names = cheermotes.getPossibleNames();
-			const re = /(?<=^|\s)([a-z]+)(\d+)(?=\s|$)/gi;
+			// TODO fix this regex so it works in firefox, which does not support lookbehind
+			const re = new RegExp('(?<=^|\s)([a-z]+)(\d+)(?=\s|$)', 'gi');
 			let match: RegExpExecArray | null;
 			let totalAmount = 0;
 			// tslint:disable-next-line:no-conditional-assignment
