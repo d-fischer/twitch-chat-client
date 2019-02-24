@@ -24,6 +24,11 @@
   "peerDependencies": {
     "twitch": "^2.0.0-pre.3"
   },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib"
+  ],
   "scripts": {
     "lint": "tslint --project .",
     "build": "tsc",
