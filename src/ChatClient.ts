@@ -320,9 +320,11 @@ export default class ChatClient extends IRCClient {
 	 */
 	static async forTwitchClient(twitchClient: TwitchClient, options: ChatClientOptions = {}) {
 		const accessToken = await twitchClient.getAccessToken('chat_login');
-		const token = await twitchClient.getTokenInfo();
-		if (token.valid) {
-			return new this(token.userName!, accessToken, twitchClient, options);
+		if (accessToken) {
+			const token = await twitchClient.getTokenInfo();
+			if (token.valid) {
+				return new this(token.userName!, accessToken.accessToken, twitchClient, options);
+			}
 		}
 
 		throw new Error('trying to get chat client for invalid token');
