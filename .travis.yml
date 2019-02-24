@@ -1,9 +1,9 @@
 language: node_js
 
 node_js:
-    - "6"
     - "8"
-    - "9"
+    - "10"
+    - "11"
 
 cache: yarn
 
@@ -14,5 +14,5 @@ script:
 jobs:
     include:
         - stage: Publish docs
-          if: type = push AND branch = master AND fork = false
-          script: travis/publishDocs.sh
+          if: type = push AND fork = false AND tag IS blank
+          script: scripts/travis/publishDocs.sh
