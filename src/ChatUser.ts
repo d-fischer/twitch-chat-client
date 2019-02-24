@@ -1,6 +1,3 @@
-import ChatClient from './ChatClient';
-import { NonEnumerable } from './Toolkit/Decorators';
-
 /**
  * A user in chat.
  */
@@ -8,12 +5,9 @@ export default class ChatUser {
 	private readonly _userData: Map<string, string>;
 	private readonly _userName: string;
 
-	@NonEnumerable private readonly _client: ChatClient;
-
 	/** @private */
-	constructor(userName: string, userData: Map<string, string> | undefined, client: ChatClient) {
+	constructor(userName: string, userData: Map<string, string> | undefined) {
 		this._userName = userName.toLowerCase();
-		this._client = client;
 		this._userData = userData ? new Map(userData) : new Map;
 	}
 
@@ -80,18 +74,5 @@ export default class ChatUser {
 	 */
 	get isMod() {
 		return this.badges.has('moderator');
-	}
-
-	/**
-	 * Retrieves more data about the user.
-	 *
-	 * @deprecated Use the `twitch` methods directly instead.
-	 */
-	async getUser() {
-		if (this.userId) {
-			return this._client._twitchClient.users.getUser(this.userId);
-		}
-
-		return this._client._twitchClient.users.getUserByName(this._userName);
 	}
 }

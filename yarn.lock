@@ -130,6 +130,11 @@
   resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.7.tgz#fb68cc9be8487e6ea5b13700e759bfbab7e0fefd"
   integrity sha512-rzOhiQ55WzAiFgXRtitP/ZUT8iVNyllEpylJ5zHzR4vArUvMB39GTk+Zon/uAM0JxEFAWnwsxC2gH8s+tZ3Myg==
 
+"@types/clone@^0.1.30":
+  version "0.1.30"
+  resolved "https://registry.yarnpkg.com/@types/clone/-/clone-0.1.30.tgz#e7365648c1b42136a59c7d5040637b3b5c83b614"
+  integrity sha1-5zZWSMG0ITalnH1QQGN7O1yDthQ=
+
 "@types/color-convert@*":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@types/color-convert/-/color-convert-1.9.0.tgz#bfa8203e41e7c65471e9841d7e306a7cd8b5172d"
@@ -164,6 +169,11 @@
   resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.32.tgz#aa0e9616b9435ccad02bc52b5b454ffc2c70ba28"
   dependencies:
     "@types/node" "*"
+
+"@types/escape-string-regexp@0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@types/escape-string-regexp/-/escape-string-regexp-0.0.30.tgz#8cfaf0b5d2e46943d6efd77d3f4d18bfa1c9f225"
+  integrity sha1-jPrwtdLkaUPW79d9P00Yv6HJ8iU=
 
 "@types/events@*":
   version "1.2.0"
@@ -1195,6 +1205,11 @@ cliui@^4.0.0:
 clone@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
+
+clone@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
+  integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
 
 coa@~1.0.1:
   version "1.0.4"
@@ -2742,12 +2757,15 @@ ipaddr.js@^1.5.2:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.8.1.tgz#fa4b79fa47fd3def5e3b159825161c0a519c9427"
 
-ircv3@^0.10.2:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/ircv3/-/ircv3-0.10.2.tgz#dd3e042e14bd3057223f8c1134496b44ed8ad775"
-  integrity sha512-mhVEXoCst2Yg9/cNJxf0jalpCYHqjnXjehmHKNH085xuFwyyGQq7yNeYQjEs+KXICR6xFbG+jHnm9LdQgvXmtg==
+ircv3@^0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/ircv3/-/ircv3-0.13.1.tgz#8a246cbdad8e4b7d865f0a7db9d2389f10a38712"
+  integrity sha512-INOpbuJk1rPWwd7IEMcC5X2KP9d0KhLsR2USnyyWo79hHiqzDzumqqzbxz6A9m/L/ojTJy1tj7cgy5GFLI2rOg==
   dependencies:
     "@d-fischer/logger" "^0.1.1"
+    "@types/clone" "^0.1.30"
+    "@types/escape-string-regexp" "0.0.30"
+    clone "^2.1.2"
     escape-string-regexp "^1.0.5"
     universal-websocket-client "^1.0.1"
     ws "^3.1.0"

@@ -1,7 +1,6 @@
 import { PrivateMessage } from 'ircv3/lib/Message/MessageTypes/Commands/';
 import ChatUser from '../ChatUser';
-import ChatClient from '../ChatClient';
-import ChatTools from '../Toolkit/ChatTools';
+import { parseEmotes } from '../Toolkit/ChatTools';
 
 export interface MessageCheermote {
 	name: string;
@@ -10,10 +9,8 @@ export interface MessageCheermote {
 }
 
 class TwitchPrivateMessage extends PrivateMessage {
-	protected _client!: ChatClient;
-
 	get userInfo() {
-		return new ChatUser(this._prefix!.nick, this._tags, this._client);
+		return new ChatUser(this._prefix!.nick, this._tags);
 	}
 
 	get channelId() {
@@ -39,47 +36,12 @@ class TwitchPrivateMessage extends PrivateMessage {
 		return Number(this._tags.get('bits'));
 	}
 
-	/**
-	 * @deprecated alternative coming soon
-	 */
-	async getSeparateBits() {
-		const result: MessageCheermote[] = [];
-
-		if (this.isCheer && this.channelId) {
-			const cheermotes = await this._client._twitchClient.bits.getCheermotes(this.channelId);
-			const names = cheermotes.getPossibleNames();
-			// TODO fix this regex so it works in firefox, which does not support lookbehind
-			const re = new RegExp('(?<=^|\s)([a-z]+)(\d+)(?=\s|$)', 'gi');
-			let match: RegExpExecArray | null;
-			let totalAmount = 0;
-			// tslint:disable-next-line:no-conditional-assignment
-			while (match = re.exec(this.params.message)) {
-				const name = match[1].toLowerCase();
-				const amount = Number(match[2]);
-				if (names.includes(name)) {
-					result.push({
-						name,
-						amount,
-						position: match.index
-					});
-					totalAmount += amount;
-				}
-			}
-
-			if (totalAmount !== this.totalBits) {
-				console.warn(`Incorrect amount of total bits: expected ${this.totalBits}, got ${totalAmount}`);
-			}
-		}
-
-		return result;
-	}
-
 	get emoteOffsets() {
 		if (!this._tags) {
 			return new Map;
 		}
 
-		return ChatTools.parseEmotes(this._tags.get('emotes'));
+		return parseEmotes(this._tags.get('emotes'));
 	}
 }
 

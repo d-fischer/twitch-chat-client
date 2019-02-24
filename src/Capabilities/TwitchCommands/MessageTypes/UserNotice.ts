@@ -1,7 +1,6 @@
 import { Message, MessageParam, MessageParamSpec } from 'ircv3';
 import ChatUser from '../../../ChatUser';
-import ChatClient from '../../../ChatClient';
-import ChatTools from '../../../Toolkit/ChatTools';
+import { parseEmotes } from '../../../Toolkit/ChatTools';
 
 /** @private */
 export interface UserNoticeParams {
@@ -23,7 +22,7 @@ export default class UserNotice extends Message<UserNoticeParams> {
 	};
 
 	get userInfo() {
-		return new ChatUser(this._prefix!.nick, this._tags, this._client as ChatClient);
+		return new ChatUser(this._prefix!.nick, this._tags);
 	}
 
 	get emoteOffsets() {
@@ -31,6 +30,6 @@ export default class UserNotice extends Message<UserNoticeParams> {
 			return new Map;
 		}
 
-		return ChatTools.parseEmotes(this._tags.get('emotes'));
+		return parseEmotes(this._tags.get('emotes'));
 	}
 }

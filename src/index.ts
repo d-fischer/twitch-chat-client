@@ -13,3 +13,7 @@ export { ChatSubInfo, ChatSubGiftInfo };
 import ChatUser from './ChatUser';
 
 export { ChatUser };
+
+import { parseBits } from './Toolkit/ChatTools';
+
+export { parseBits };

@@ -1,7 +1,6 @@
 import { Message, MessageParam, MessageParamSpec } from 'ircv3';
 import ChatUser from '../../../ChatUser';
-import ChatClient from '../../../ChatClient';
-import ChatTools from '../../../Toolkit/ChatTools';
+import { parseEmotes } from '../../../Toolkit/ChatTools';
 
 /** @private */
 export interface WhisperParams {
@@ -21,7 +20,7 @@ export default class Whisper extends Message<WhisperParams> {
 	};
 
 	get userInfo(): ChatUser {
-		return new ChatUser(this._prefix!.nick, this._tags, this._client as ChatClient);
+		return new ChatUser(this._prefix!.nick, this._tags);
 	}
 
 	get emoteOffsets(): Map<string, string[]> {
@@ -29,6 +28,6 @@ export default class Whisper extends Message<WhisperParams> {
 			return new Map;
 		}
 
-		return ChatTools.parseEmotes(this._tags.get('emotes'));
+		return parseEmotes(this._tags.get('emotes'));
 	}
 }
