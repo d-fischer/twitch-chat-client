@@ -454,34 +454,46 @@ export default class ChatClient extends IRCClient {
 				case 'resub': {
 					const event = messageType === 'sub' ? this.onSub : this.onResub;
 					const plan = tags.get('msg-param-sub-plan')!;
+					const streakMonths = tags.get('msg-param-streak-months');
 					const subInfo: ChatSubInfo = {
 						displayName: tags.get('display-name')!,
 						plan,
 						planName: tags.get('msg-param-sub-plan-name')!,
 						isPrime: plan === 'Prime',
-						streak: Number(tags.get('msg-param-streak-tenure-months') || tags.get('msg-param-months')),
+						months: Number(tags.get('msg-param-cumulative-months')),
+						streak: streakMonths ? Number(streakMonths) : undefined,
 						message
 					};
 					this.emit(event, channel, tags.get('login')!, subInfo, userNotice);
 					break;
 				}
-				case 'subgift': {
+				case 'subgift':
+				case 'anonsubgift': {
 					const plan = tags.get('msg-param-sub-plan')!;
+					const streakMonths = tags.get('msg-param-streak-months');
+					const isAnon = messageType === 'anonsubgift';
 					const subInfo: ChatSubGiftInfo = {
 						displayName: tags.get('msg-param-recipient-display-name')!,
-						gifter: tags.get('login')!,
-						gifterDisplayName: tags.get('display-name')!,
+						gifter: isAnon ? tags.get('login')! : undefined,
+						gifterDisplayName: isAnon ? tags.get('display-name')! : undefined,
+						gifterGiftCount: isAnon ? Number(tags.get('msg-param-sender-count')!) : undefined,
 						plan,
 						planName: tags.get('msg-param-sub-plan-name')!,
 						isPrime: plan === 'Prime',
-						streak: Number(tags.get('msg-param-streak-tenure-months') || tags.get('msg-param-months'))
+						months: Number(tags.get('msg-param-cumulative-months')),
+						streak: streakMonths ? Number(streakMonths) : undefined
 					};
 					this.emit(this.onSubGift, channel, tags.get('msg-param-recipient-user-name')!, subInfo, userNotice);
 					break;
 				}
+				case 'anonsubmysterygift':
 				case 'submysterygift': {
+					const isAnon = messageType === 'anonsubmysterygift';
 					const communitySubInfo: ChatCommunitySubInfo = {
-						gifterDisplayName: tags.get('display-name')!,
+						gifter: isAnon ? tags.get('login')! : undefined,
+						gifterDisplayName: isAnon ? tags.get('display-name')! : undefined,
+						gifterGiftCount: isAnon ? Number(tags.get('msg-param-sender-count')!) : undefined,
+						count: Number(tags.get('msg-param-mass-gift-count')!),
 						plan: tags.get('msg-param-sub-plan')!
 					};
 					this.emit(this.onCommunitySub, channel, tags.get('login'), communitySubInfo, userNotice);

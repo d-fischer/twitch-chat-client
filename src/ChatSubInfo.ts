@@ -25,9 +25,16 @@ export default interface ChatSubInfo {
 	isPrime: boolean;
 
 	/**
-	 * The number of consecutive months of subscriptions for the channel.
+	 * The number of total months of subscriptions for the channel.
 	 */
-	streak: number;
+	months: number;
+
+	/**
+	 * The number of consecutive months of subscriptions for the channel.
+	 *
+	 * Will not be sent if the user resubscribing does not choose to.
+	 */
+	streak?: number;
 
 	/**
 	 * The message that was sent with the subscription.
@@ -41,12 +48,17 @@ export default interface ChatSubInfo {
  */
 export interface ChatSubGiftInfo extends ChatSubInfo {
 	/**
-	 * The user that gifted the subscription.
+	 * The name of the user that gifted the subscription.
 	 */
-	gifter: string;
+	gifter?: string;
 
 	/**
 	 * The display name of the user that gifted the subscription.
 	 */
-	gifterDisplayName: string;
+	gifterDisplayName?: string;
+
+	/**
+	 * The number of subscriptions the gifting user has already gifted in total.
+	 */
+	gifterGiftCount?: number;
 }
