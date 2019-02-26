@@ -390,7 +390,8 @@ export default class ChatClient extends IRCClient {
 				secure: !options.disableSsl
 			},
 			webSocket: !options.rawIrc,
-			logLevel: options.logLevel
+			logLevel: options.logLevel,
+			nonConformingCommands: ['004']
 		});
 
 		this._twitchClient = twitchClient;

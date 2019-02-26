@@ -2757,10 +2757,10 @@ ipaddr.js@^1.5.2:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.8.1.tgz#fa4b79fa47fd3def5e3b159825161c0a519c9427"
 
-ircv3@^0.13.1:
-  version "0.13.1"
-  resolved "https://registry.yarnpkg.com/ircv3/-/ircv3-0.13.1.tgz#8a246cbdad8e4b7d865f0a7db9d2389f10a38712"
-  integrity sha512-INOpbuJk1rPWwd7IEMcC5X2KP9d0KhLsR2USnyyWo79hHiqzDzumqqzbxz6A9m/L/ojTJy1tj7cgy5GFLI2rOg==
+ircv3@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/ircv3/-/ircv3-0.14.0.tgz#e26c9fb222ee098788be2a6edc461bc76a48b0a2"
+  integrity sha512-7NAu/aW51jAk1rv/ANEhQO5H9iE6dudH0w5+YkjRYuD5Tid9QcBABjB2Q65J/ndDO/wnuUi7uxdloLc1xHikpw==
   dependencies:
     "@d-fischer/logger" "^0.1.1"
     "@types/clone" "^0.1.30"
