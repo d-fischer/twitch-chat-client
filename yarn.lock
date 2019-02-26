@@ -5389,10 +5389,10 @@ tty-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
 
-twitch@^2.0.0-pre.3:
-  version "2.0.0-pre.3"
-  resolved "https://registry.yarnpkg.com/twitch/-/twitch-2.0.0-pre.3.tgz#a4efd244c61f3a8ec1ce7ba88b43376989412b02"
-  integrity sha512-1OF4x83TNYUWG913Jpi8dtk6VEzu7Erz/N2o8r0rFlMSAjUABY0/qDZZrchOhFjtsI2Qbs+B9MaAg0MTVWQR0w==
+twitch@^2.0.0-pre.8:
+  version "2.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/twitch/-/twitch-2.0.0-pre.8.tgz#9b559230ead142eba3cd74c157692ac7503aae4a"
+  integrity sha512-iBQaEOn5NAjkyZwi6Vocco6mRfV3LlIfi+0IWNFrHdjLdWO9jdyNDuUZOS5Rue4abUdRzbrpp61fiUhmlss8kw==
   dependencies:
     "@types/qs" "^6.5.1"
     fetch-ponyfill "^6.0.2"

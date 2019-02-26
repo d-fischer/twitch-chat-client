@@ -26,6 +26,23 @@ import ChatCommunitySubInfo from './ChatCommunitySubInfo';
  * Options for a chat client.
  */
 export interface ChatClientOptions {
+	/**
+	 * Whether to request a token with only read permission.
+	 *
+	 * Ignored if `legacyScopes` is `true`.
+	 */
+	readOnly?: boolean;
+
+	/**
+	 * Whether to request a token with the old chat permission scope.
+	 *
+	 * If you're not sure whether this is necessary, just try leaving this off, and if it doesn't work, turn it on and try again.
+	 */
+	legacyScopes?: boolean;
+
+	/**
+	 * The minimum log level of messages that will be sent from the underlying IRC client.
+	 */
 	logLevel?: LogLevel;
 }
 
@@ -315,11 +332,21 @@ export default class ChatClient extends IRCClient {
 	/**
 	 * Creates a new Twitch chat client with the user info from the TwitchClient instance.
 	 *
+	 * @expandParams
+	 *
 	 * @param twitchClient The TwitchClient instance to use for user info and API requests.
-	 * @param options Options for the chat client.
+	 * @param options
 	 */
 	static async forTwitchClient(twitchClient: TwitchClient, options: ChatClientOptions = {}) {
-		const accessToken = await twitchClient.getAccessToken('chat_login');
+		let scopes: string[];
+		if (options.legacyScopes) {
+			scopes = ['chat_login'];
+		} else if (options.readOnly) {
+			scopes = ['chat:read'];
+		} else {
+			scopes = ['chat:read', 'chat:edit'];
+		}
+		const accessToken = await twitchClient.getAccessToken(scopes);
 		if (accessToken) {
 			const token = await twitchClient.getTokenInfo();
 			if (token.valid) {
@@ -333,12 +360,14 @@ export default class ChatClient extends IRCClient {
 	/**
 	 * Creates a new Twitch chat client.
 	 *
+	 * @expandParams
+	 *
 	 * @param username The user name to use to connect to Twitch chat.
 	 * @param token The access token to use to connect to Twitch chat.
 	 *
 	 * Do not prefix `oauth:`.
 	 * @param twitchClient The {@TwitchClient} instance to use for API requests.
-	 * @param options Options for the chat client.
+	 * @param options
 	 */
 	constructor(username: string, token: string, twitchClient: TwitchClient, options: ChatClientOptions = {}) {
 		super({
