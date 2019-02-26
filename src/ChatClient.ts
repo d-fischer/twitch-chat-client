@@ -44,6 +44,18 @@ export interface ChatClientOptions {
 	 * The minimum log level of messages that will be sent from the underlying IRC client.
 	 */
 	logLevel?: LogLevel;
+
+	/**
+	 * Whether to disable the secure connection using SSL.
+	 *
+	 * You should not use this except for debugging purposes.
+	 */
+	disableSsl?: boolean;
+
+	/**
+	 * Whether to connect to IRC directly instead of using the WebSocket servers.
+	 */
+	rawIrc?: boolean;
 }
 
 /**
@@ -372,12 +384,12 @@ export default class ChatClient extends IRCClient {
 	constructor(username: string, token: string, twitchClient: TwitchClient, options: ChatClientOptions = {}) {
 		super({
 			connection: {
-				hostName: 'irc-ws.chat.twitch.tv',
+				hostName: options.rawIrc ? 'irc.chat.twitch.tv' : 'irc-ws.chat.twitch.tv',
 				nick: username.toLowerCase(),
 				password: `oauth:${token}`,
-				secure: true
+				secure: !options.disableSsl
 			},
-			webSocket: true,
+			webSocket: !options.rawIrc,
 			logLevel: options.logLevel
 		});
 
