@@ -376,8 +376,6 @@ export default class ChatClient extends IRCClient {
 	 *
 	 * @param username The user name to use to connect to Twitch chat.
 	 * @param token The access token to use to connect to Twitch chat.
-	 *
-	 * Do not prefix `oauth:`.
 	 * @param twitchClient The {@TwitchClient} instance to use for API requests.
 	 * @param options
 	 */
@@ -386,7 +384,7 @@ export default class ChatClient extends IRCClient {
 			connection: {
 				hostName: options.rawIrc ? 'irc.chat.twitch.tv' : 'irc-ws.chat.twitch.tv',
 				nick: username.toLowerCase(),
-				password: `oauth:${token}`,
+				password: `oauth:${token.replace(/^oauth:/, '')}`,
 				secure: !options.disableSsl
 			},
 			webSocket: !options.rawIrc,
