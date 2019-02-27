@@ -59,6 +59,21 @@ export interface ChatClientOptions {
 }
 
 /**
+ * Options for a chat client, including authentication details.
+ */
+export interface ChatClientOptionsWithAuth extends ChatClientOptions {
+	/**
+	 * The user name you want to connect with.
+	 */
+	userName: string;
+
+	/**
+	 * The token to use for connecting.
+	 */
+	token?: string;
+}
+
+/**
  * An interface to Twitch chat.
  *
  * @inheritDoc
@@ -362,7 +377,11 @@ export default class ChatClient extends IRCClient {
 		if (accessToken) {
 			const token = await twitchClient.getTokenInfo();
 			if (token.valid) {
-				return new this(token.userName!, accessToken.accessToken, twitchClient, options);
+				return new this(twitchClient, {
+					...options,
+					userName: token.userName!,
+					token: accessToken.accessToken
+				});
 			}
 		}
 
@@ -370,21 +389,37 @@ export default class ChatClient extends IRCClient {
 	}
 
 	/**
+	 * Creates a new anonymous Twitch chat client.
+	 *
+	 * @expandParams
+	 *
+	 * @param twitchClient The TwitchClient instance to use for user info and API requests.
+	 * @param options
+	 */
+	static anonymous(twitchClient: TwitchClient, options: ChatClientOptions = {}) {
+		const randomSuffix = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
+		const userName = `justinfan${randomSuffix}`;
+
+		return new this(twitchClient, {
+			...options,
+			userName
+		});
+	}
+
+	/**
 	 * Creates a new Twitch chat client.
 	 *
 	 * @expandParams
 	 *
-	 * @param username The user name to use to connect to Twitch chat.
-	 * @param token The access token to use to connect to Twitch chat.
 	 * @param twitchClient The {@TwitchClient} instance to use for API requests.
 	 * @param options
 	 */
-	constructor(username: string, token: string, twitchClient: TwitchClient, options: ChatClientOptions = {}) {
+	constructor(twitchClient: TwitchClient, options: ChatClientOptionsWithAuth) {
 		super({
 			connection: {
 				hostName: options.rawIrc ? 'irc.chat.twitch.tv' : 'irc-ws.chat.twitch.tv',
-				nick: username.toLowerCase(),
-				password: `oauth:${token.replace(/^oauth:/, '')}`,
+				nick: options.userName.toLowerCase(),
+				password: options.token && `oauth:${options.token.replace(/^oauth:/, '')}`,
 				secure: !options.disableSsl
 			},
 			webSocket: !options.rawIrc,
