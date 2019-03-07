@@ -975,6 +975,17 @@ export default class ChatClient extends IRCClient {
 		});
 	}
 
+	async quit() {
+		return new Promise<void>(resolve => {
+			const handler = () => {
+				this._connection.removeListener('disconnect', handler);
+				resolve();
+			};
+			this._connection.addListener('disconnect', handler);
+			this._connection.disconnect();
+		});
+	}
+
 	protected registerCoreMessageTypes() {
 		super.registerCoreMessageTypes();
 		this.registerMessageType(TwitchPrivateMessage);
